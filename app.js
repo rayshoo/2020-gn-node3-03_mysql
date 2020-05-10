@@ -2,17 +2,26 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
-/* View engine */
-app.set('view engine', 'pug');
-app.set('views', path.join(__dirname, './views'));
 
-/* MiddleWare */
+/* Server */
+app.listen(3000, ()=>{
+  console.log('http://127.0.0.1:3000');
+})
+
+/* Setting */
+app.set('view engine', 'pug');
+app.set('Views', path.join(__dirname, './views'));
+app.locals.pretty = true;
+
+/* Middleware */
 app.use(express.json());
 app.use(express.urlencoded({extended : false}));
-app.use('/', express.static('public', path.join(__dirname, './public')));
+app.use('/', express.static(path.join(__dirname, './public')));
 
-app.listen(3000,function(){
-  console.log('http://127.0.0.1:3000');
-});
-
-/* Routers */
+/* Router */
+const indexRouter = require('./routes/index');
+const memberRouter = require('./routes/member');
+const boardRouter = require('./routes/board');
+app.use('/', indexRouter);
+app.use('/member', memberRouter);
+app.use('/board', boardRouter);

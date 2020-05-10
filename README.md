@@ -40,11 +40,13 @@ created = '2020-05-03 12:42:50';
 ```
 ```cmd
 npm i mysql2
+npm i moment
 ```
 ## mysql : callback version, mysql2 : promise version
 
 ### AWS 라이트세일?
 ### notion.so?
+### templated.co
 
 # .gitignore에 다음 세개는 필수!!
 ## /node_modules
